@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+
 const requiredPath = path.resolve(__dirname, 'secret-folder');
 
 function getFileSize(filePath, callback) {
