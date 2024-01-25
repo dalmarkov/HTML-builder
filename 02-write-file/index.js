@@ -12,9 +12,13 @@ function writeToFile(data) {
 
 function promptUser() {
   rl.question(
-    'Введите текст (или нажмите Ctrl+C для завершения): ',
+    'Введите текст (или введите "exit" или нажмите Ctrl+C для завершения): ',
     (userInput) => {
-      writeToFile(userInput);
+      if (userInput.toLowerCase() === 'exit') {
+        rl.close();
+      } else {
+        writeToFile(userInput);
+      }
     },
   );
 }
