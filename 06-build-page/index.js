@@ -71,7 +71,7 @@ async function copyAssets() {
       const sourceFile = path.join(sourcePath, existingFile);
       const destinationFile = path.join(destinationPath, existingFile);
 
-      if (!(await fs.exists(sourceFile))) {
+      if (!(await fs.access(sourceFile))) {
         await fs.rm(destinationFile, { recursive: true });
       }
     }
