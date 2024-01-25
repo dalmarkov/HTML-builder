@@ -65,6 +65,17 @@ async function copyAssets() {
 
     await fs.mkdir(destinationPath, { recursive: true });
 
+    const existingFiles = await fs.readdir(destinationPath);
+
+    for (const existingFile of existingFiles) {
+      const sourceFile = path.join(sourcePath, existingFile);
+      const destinationFile = path.join(destinationPath, existingFile);
+
+      if (!(await fs.exists(sourceFile))) {
+        await fs.rm(destinationFile, { recursive: true });
+      }
+    }
+
     const folderNames = await fs.readdir(sourcePath, { withFileTypes: true });
 
     for (const folderName of folderNames) {
